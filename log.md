@@ -14,8 +14,10 @@ Manipulating file structure from the terminal and navigating through the folder 
 
 ````
 
-Configuring the isntalled programs to smooth the process and to allow work environement from the terminal when using applications.
+Configuring the installed programs to smooth the process and to allow work environement from the terminal when using applications.
 Setting options for the /.zshrc and the /.zprofile to help speed the coding with aliases and shortcuts.
+Understanding the workflow in the terminal and how the programs are executed when using node versions
+Configuring prettier ane ESlint on VScode environment.
 
 ```
 
