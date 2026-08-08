@@ -1,6 +1,9 @@
+-MAIN version
+
 # Phase 0 - SetUp
 
 ## Day 2: Intallation of Node, nvm, npm and shell config
+
 ```
 Node version: 24.19.0
 npm version : 11.17.0
