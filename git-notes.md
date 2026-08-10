@@ -7,3 +7,4 @@ Understanding that git saves files and work on the .git directory on the local e
 ```
 
 ## Day 4 lesson concept
+with AI generating code constantly — being able to read a diff and catch what's wrong on a PR is the hiring-signal skill. More than writing code from scratch.
