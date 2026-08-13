@@ -1,5 +1,5 @@
 // Condition helpers.ts
-//0-49 Poor . 50-79 Fair . 80-100 Good . Else Ivalid
+//0-49 Poor . 50-79 Fair . 80-100 Good . Else Invalid
 function gradeCondition(score: number) {
   if (!Number.isFinite(score)) {
     return "Invalid";
