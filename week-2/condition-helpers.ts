@@ -1,6 +1,7 @@
 // Condition helpers.ts
 //0-49 Poor . 50-79 Fair . 80-100 Good . Else Invalid
-function gradeCondition(score: number) {
+type Grade = "Good" | "Fair" | "Poor" | "Invalid";
+function gradeCondition(score: number): Grade {
   if (!Number.isFinite(score)) {
     return "Invalid";
   }
@@ -42,3 +43,28 @@ console.log(conditionColor("Fair")); // expected Amber
 console.log(conditionColor("Good")); // expected Green
 console.log(conditionColor("Poor")); // expected red
 console.log(conditionColor("broken")); // expected Grey
+
+// < 0 "Not due" Due today, 1-30 ->"Low", 31-90 -> "Medium", > 90 "High"
+
+function gradeUrgency(daysOverdue: number): string {
+  if (!Number.isFinite(daysOverdue)) {
+    return "Invalid";
+  } else if (daysOverdue < 0) {
+    return "Not due";
+  } else if (daysOverdue === 0) {
+    return "Due today";
+  } else if (daysOverdue <= 30) {
+    return "Low";
+  } else if (daysOverdue <= 90) {
+    return "Medium";
+  } else {
+    return "High";
+  }
+}
+
+console.log(gradeUrgency(NaN)); //Expected Invalid
+console.log(gradeUrgency(-5)); //Expected Not due
+console.log(gradeUrgency(0)); //Expected Due today
+console.log(gradeUrgency(5)); //Expected Low
+console.log(gradeUrgency(50)); //Expected Medium
+console.log(gradeUrgency(91)); //Expected High
