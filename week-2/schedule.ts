@@ -13,39 +13,10 @@ function nextInspectionDate(
   return new Date(
     lastInspected.getFullYear(),
     lastInspected.getMonth() + intervalMonths,
-    lastInspected.getDay(),
+    lastInspected.getDate(),
   );
 }
-console.log(nextInspectionDate(new Date("2026-08-16")));
-/**
- * Loop test
- * @param n iterances
- */
-
-function printNextInspections(n: number): void {
-  for (let i = 0; i < n; i++) {
-    console.log(i);
-  }
-}
-printNextInspections(3);
-printNextInspections(0);
-
-/**
- * Gives the date of next inspection by entering the interval
- * @param lastInspected last inspection date
- * @param n is the interval
- */
-function printNextInspection(lastInspected: Date, n: number): void {
-  for (let i = 0; i < n; i++) {
-    let date = new Date(
-      lastInspected.getFullYear() + i - 1,
-      lastInspected.getMonth() + i,
-      lastInspected.getDate(),
-    );
-    console.log(date.toDateString());
-  }
-}
-printNextInspection(new Date(2025, 0, 15), 3);
+nextInspectionDate(new Date(2025, 0, 12));
 
 /**
  * Gives the next inspection date
@@ -118,7 +89,4 @@ function scanConditions(ratings: string): void {
     }
   }
 }
-
-//scanConditions("GGFPG");
-//scanConditions("GFGFP");
-scanConditions("GGG");
+scanConditions("GF");
