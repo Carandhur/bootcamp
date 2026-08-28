@@ -85,12 +85,13 @@ function allInspectedSince(elements: BuildingElement[], cutoff: Date): boolean {
 console.log(
   `All Elements inspected after deadline: ${allInspectedSince(element, new Date(2024, 5, 10))}`,
 ); //false
+console.log(allInspectedSince([], new Date(2024, 5, 10))); // => true
 
 console.log(`Special cases*****************************************`); //false
 
-console.log(firstOverdue(element, new Date(201, 8, 12))); //undefined
+console.log(firstOverdue(element, new Date(2010, 8, 12))); //undefined
 
-const empty: BuildingElement[] = [
+const noPoor: BuildingElement[] = [
   {
     id: "E06",
     condition: "good",
@@ -99,4 +100,11 @@ const empty: BuildingElement[] = [
     objectsInspected: 1,
   },
 ];
-console.log(`Is any in poor condition : ${anyPoor(empty)}`); //false
+console.log(`Is any in poor condition : ${anyPoor(noPoor)}`); //false
+
+function overdueSummaries(elements: BuildingElement[], cutoff: Date): string[] {
+  return elements
+    .filter((n) => n.lastInspected < cutoff)
+    .map((n) => `${n.id} (${n.category})   ${n.lastInspected.toDateString()} `);
+}
+console.log(overdueSummaries(element, new Date(2025, 5, 15)));
