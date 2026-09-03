@@ -56,7 +56,7 @@ const element: BuildingElement[] = [
     objectsInspected: 2,
   },
 ];
-
+/*
 function poorElements(elements: BuildingElement[]): BuildingElement[] {
   return elements.filter((n) => n.condition === "poor");
 }
@@ -67,10 +67,7 @@ function summaries(elements: BuildingElement[]): string[] {
 }
 console.log(summaries(element));
 
-function firstOverdue(
-  elements: BuildingElement[],
-  cutoff: Date,
-): BuildingElement | undefined {
+function firstOverdue(elements: BuildingElement[],cutoff: Date): BuildingElement | undefined {
   return elements.find((n) => n.lastInspected < cutoff);
 }
 console.log(firstOverdue(element, new Date(2020, 8, 12))); //Array element
@@ -105,6 +102,7 @@ console.log(`Is any in poor condition : ${anyPoor(noPoor)}`); //false
 console.log(
   `*****************************************************************`,
 );
+*/
 
 function conditionScore(elements: BuildingElement[]): number {
   const score = new Map<string, number>();
@@ -163,8 +161,10 @@ function sortByLastInspected(elements: BuildingElement[]): BuildingElement[] {
   const last = [...elements].sort(
     (a, b) => a.lastInspected.getTime() - b.lastInspected.getTime(),
   );
-
+  
   return last;
+
+
 }
 //console.log(sortByLastInspected(element));
 /*sortByLastInspected: why does subtracting the two .getTime() values put older dates first? 
@@ -186,3 +186,52 @@ console.log(
   "AFTER:",
   element.map((n) => n.id),
 );
+
+function percentPoor(elements:BuildingElement[]): number {
+ const condition = new Map<string, number>();
+  for (const object of elements) {
+    condition.set(object.condition, (condition.get(object.condition) ?? 0) + 1);
+  }
+  if (elements.length ===0){
+    return 0;
+  }
+const poor = condition.get("poor") ?? 0;
+return poor/ elements.length *100;
+
+
+}
+
+
+console.log(percentPoor(elementVide));
+
+
+interface BuildingReport {
+  total: number;
+  averageScore:number;
+  categoryCounts : Map<string,number>;
+  categories: string[];
+  byOldestFirst: BuildingElement[];
+  oldest : BuildingElement | undefined;
+  percentPoor: number;
+}
+
+function buildingReport(elements: BuildingElement []): BuildingReport {
+
+  const byOldest = sortByLastInspected(elements);
+
+    return {  
+  total: elements.length,
+  averageScore: conditionScore(elements),
+  categoryCounts : countByCategory(elements),
+  categories: distinctCategories(elements),
+  byOldestFirst: byOldest,
+  oldest : byOldest.at(0),
+  percentPoor: percentPoor(elements),
+}
+}
+console.log(buildingReport(element));
+console.log(
+  `*****************************************************************`,
+);
+console.log(buildingReport(elementVide));// prediction: everything empty.
+//in your own words, why is the oldest-inspected element byOldestFirst[0] and not byOldestFirst.at(-1)? because it would show the last, which is the newest:
